@@ -1,8 +1,9 @@
 import React from "react";
+import MovieCard from "./MovieCard";
 
 const MovieScreen = (props) => {
     const movieDisplay = props.movieList.map((movie, index) => {
-        return <h2>{movie.original_title}</h2>;
+        return <MovieCard movie={movie}/>;
     })
 
     return (
