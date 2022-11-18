@@ -1,15 +1,29 @@
 import React from "react";
 
-const MovieCard = ({movie}) => {
-    return (
-        <div className="movie-card">
-            <div>
-                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
-                <h3>{movie.original_title}</h3>
-            </div>
-            <button>Add to List</button>
-        </div>
+const MovieCard = ({ movie, list, addMovie, removeMovie }) => {
+  const inWatchlist = list.filter((filteredMovie) => {
+    return filteredMovie.id === movie.id;
+  });
+
+  const button =
+    inWatchlist.length === 0 ? (
+      <button onClick={() => addMovie(movie)}>Add to List</button>
+    ) : (
+      <button onClick={() => removeMovie(movie)}>Remove</button>
     );
+
+  return (
+    <div className="movie-card">
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+          alt=""
+        />
+        <h3>{movie.original_title}</h3>
+      </div>
+      {button}
+    </div>
+  );
 };
 
 export default MovieCard;
